@@ -4,8 +4,9 @@ ENV NB_USER=rstudio
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH=${VIRTUAL_ENV}/bin:${PATH}
 
-RUN /rocker_scripts/install_jupyter.sh
-
+RUN /rocker_scripts/install_jupyter.sh \
+ && pip install --upgrade pip \
+ && pip install jupyterlab
 EXPOSE 8888
 
 CMD ["/bin/sh", "-c", "jupyter lab --ip 0.0.0.0 --no-browser"]
